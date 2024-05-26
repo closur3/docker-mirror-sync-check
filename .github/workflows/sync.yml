@@ -1,0 +1,110 @@
+name: Docker Registry Mirror Sync Check
+
+on:
+  push:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  TEST:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@main
+
+      - name: Set up docker
+        uses: docker-practice/actions-setup-docker@master
+
+      - run: docker info
+
+      - name: Sync check
+        id: sync-check
+        run: |
+          registries=(
+            "docker.io"
+            "dockerproxy.com"
+            "docker.nju.edu.cn"
+            "docker.m.daocloud.io"
+            "docker.mirrors.sjtug.sjtu.edu.cn"
+          )
+
+          images=(
+            "library/node"
+            "library/redis"
+            "library/nginx"
+            "adguard/adguardhome"
+          )
+
+          results="| Registry | Image | Sync Status | Digest Docker.io | Digest Mirror | Error |\\n"
+          results+="|----------|-------|-------------|------------------|---------------|-------|\\n"
+          date=$(date '+%Y-%m-%d')
+
+          for image in "${images[@]}"
+          do
+            echo ::group::[ GET SHA256 DIGEST: $image ]
+            docker pull docker.io/$image || true
+            digest_docker_io=$(docker inspect --format='{{index .RepoDigests 0}}' docker.io/$image | cut -d '@' -f 2)
+            digest_docker_io_short=${digest_docker_io:0:13} # 截断摘要
+            echo -e "\033[32mdocker.io digest for $image: $digest_docker_io_short\033[0m"
+            echo ::endgroup::
+
+            for registry in "${registries[@]}"
+            do
+              if [ "$registry" != "docker.io" ]; then
+                echo ::group::Test $registry/$image
+                pull_output=$(docker pull $registry/$image 2>&1 || true)
+                echo "$pull_output"
+                if echo "$pull_output" | grep -q 'Status: Downloaded newer image\|Status: Image is up to date'; then
+                  digest_other=$(docker inspect --format='{{index .RepoDigests 0}}' $registry/$image | cut -d '@' -f 2)
+                  digest_other_short=${digest_other:0:13} # 截断摘要
+                  if [ "$digest_other" == "$digest_docker_io" ]; then
+                    results+="| $registry | $image | ✔ In Sync | $digest_docker_io_short... | $digest_other_short... | |\\n"
+                  else
+                    results+="| $registry | $image | ✖ Outdated | $digest_docker_io_short... | $digest_other_short... | |\\n"
+                  fi
+                else
+                  error_response=$(echo "$pull_output" | grep 'Error response from daemon:' || echo "$pull_output")
+                  results+="| $registry | $image | ✖ Failed | $digest_docker_io_short... | | $error_response |\\n"
+                fi
+                docker rmi $registry/$image > /dev/null 2>&1 || true
+                echo ::endgroup::
+              fi
+            done
+          done
+
+          echo -e "$results" | tee sync_results.md
+          echo "results=\$results" >> $GITHUB_ENV
+
+      - name: Update README.md
+        run: |
+          date=$(date '+%Y-%m-%d')
+          history_folder="history"
+          mkdir -p $history_folder
+          cp sync_results.md $history_folder/sync_results_$date.md
+
+          {
+            echo "## Docker Registry Mirror Sync Results"
+            echo "### Latest Results - $date"
+            cat sync_results.md
+            echo
+            echo "### History"
+            find $history_folder -type f -mtime -7 | sort | while read file; do
+              echo "* [$(basename $file)]($file)"
+            echo "* [more results](https://github.com/closur3/docker-mirror-sync-check/tree/main/history)"
+            done
+            echo
+            echo "### Link"
+            echo "* [Docker Registry Mirrors](https://gist.github.com/y0ngb1n/7e8f16af3242c7815e7ca2f0833d3ea6)"
+            echo
+            echo "_This file was updated on $date._"
+          } > README.md
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add README.md history/
+          git commit -m 'Update sync results and history'
+          git push
