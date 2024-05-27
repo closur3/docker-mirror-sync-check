@@ -46,7 +46,7 @@ jobs:
             echo ::group::[ GET SHA256 DIGEST: $image ]
             docker pull docker.io/$image || true
             digest_docker_io=$(docker inspect --format='{{index .RepoDigests 0}}' docker.io/$image | cut -d '@' -f 2)
-            digest_docker_io_short=${digest_docker_io:0:13} # 截断摘要
+            digest_docker_io_short=${digest_docker_io:0:13}
             echo -e "\033[32mdocker.io digest for $image: $digest_docker_io_short\033[0m"
             echo ::endgroup::
 
@@ -58,7 +58,7 @@ jobs:
                 echo "$pull_output"
                 if echo "$pull_output" | grep -q 'Status: Downloaded newer image\|Status: Image is up to date'; then
                   digest_other=$(docker inspect --format='{{index .RepoDigests 0}}' $registry/$image | cut -d '@' -f 2)
-                  digest_other_short=${digest_other:0:13} # 截断摘要
+                  digest_other_short=${digest_other:0:13}
                   if [ "$digest_other" == "$digest_docker_io" ]; then
                     results+="| $registry | $image | ✔ In Sync | $digest_docker_io_short... | $digest_other_short... | |\\n"
                   else
@@ -92,8 +92,8 @@ jobs:
             echo "### History"
             find $history_folder -type f -mtime -7 | sort | while read file; do
               echo "* [$(basename $file)]($file)"
-            echo "* [more results](https://github.com/closur3/docker-mirror-sync-check/tree/main/history)"
             done
+            echo "* [more results](https://github.com/closur3/docker-mirror-sync-check/tree/main/history)"
             echo
             echo "### Link"
             echo "* [Docker Registry Mirrors](https://gist.github.com/y0ngb1n/7e8f16af3242c7815e7ca2f0833d3ea6)"
