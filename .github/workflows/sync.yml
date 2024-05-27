@@ -90,7 +90,7 @@ jobs:
             cat sync_results.md
             echo
             echo "### History"
-            find $history_folder -type f -mtime -7 | sort | while read file; do
+            find $history_folder -type f -mtime -7 | sort -r | while read file; do
               echo "* [$(basename $file)]($file)"
             done
             echo "* [more results](https://github.com/closur3/docker-mirror-sync-check/tree/main/history)"
