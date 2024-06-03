@@ -45,7 +45,7 @@ jobs:
             echo ::group::[ GET SHA256 DIGEST: $image ]
             docker pull docker.io/$image || true
             digest_docker_io=$(docker inspect --format='{{index .RepoDigests 0}}' docker.io/$image | cut -d '@' -f 2)
-            digest_docker_io_short=${digest_docker_io:0:13}
+            digest_docker_io_short=${digest_docker_io:7:8}
             echo -e "\033[32mdocker.io digest for $image: $digest_docker_io_short\033[0m"
             echo ::endgroup::
 
@@ -57,7 +57,7 @@ jobs:
                 echo "$pull_output"
                 if echo "$pull_output" | grep -q 'Status: Downloaded newer image\|Status: Image is up to date'; then
                   digest_other=$(docker inspect --format='{{index .RepoDigests 0}}' $registry/$image | cut -d '@' -f 2)
-                  digest_other_short=${digest_other:0:13}
+                  digest_other_short=${digest_other:7:8}
                   if [ "$digest_other" == "$digest_docker_io" ]; then
                     results+="| $registry | $image | ✔ In Sync | $digest_docker_io_short... | $digest_other_short... | |\\n"
                   else
@@ -83,15 +83,18 @@ jobs:
           mkdir -p $history_folder
           cp sync_results.md $history_folder/sync_results_$date.md
 
+          # Generate list of recent files and limit to last 7 entries
+          history_links=$(ls -t $history_folder/sync_results_*.md | head -n 7 | while read file; do
+            echo "* [$(basename $file)]($file)"
+          done)
+
           {
             echo "## Docker Registry Mirror Sync Results"
             echo "### Latest Results - $date"
             cat sync_results.md
             echo
             echo "### History"
-            find $history_folder -type f -mtime -7 | sort -r | while read file; do
-              echo "* [$(basename $file)]($file)"
-            done
+            echo "$history_links"
             echo "* [more results](https://github.com/closur3/docker-mirror-sync-check/tree/main/history)"
             echo
             echo "### Link"
