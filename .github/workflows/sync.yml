@@ -84,7 +84,7 @@ jobs:
           cp sync_results.md $history_folder/sync_results_$date.md
 
           # Generate list of recent files and limit to last 7 entries
-          history_links=$(ls -t $history_folder/sync_results_*.md | head -n 7 | while read file; do
+          history_links=$(ls $history_folder/sync_results_*.md | sort -t '_' -k 3 -r | head -n 7 | while read file; do
             echo "* [$(basename $file)]($file)"
           done)
 
