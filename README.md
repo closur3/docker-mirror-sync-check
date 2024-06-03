@@ -13,17 +13,17 @@
 | docker.mirrors.sjtug.sjtu.edu.cn | library/nginx | ✖ Failed | 0f04e4f6... | | Error response from daemon: Get "https://docker.mirrors.sjtug.sjtu.edu.cn/v2/": net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers) |
 | docker.nju.edu.cn | adguard/adguardhome | ✔ In Sync | f890b775... | f890b775... | |
 | docker.m.daocloud.io | adguard/adguardhome | ✔ In Sync | f890b775... | f890b775... | |
-| docker.mirrors.sjtug.sjtu.edu.cn | adguard/adguardhome | ✖ Failed | f890b775... | | Error response from daemon: Get "https://docker.mirrors.sjtug.sjtu.edu.cn/v2/": net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers) |
+| docker.mirrors.sjtug.sjtu.edu.cn | adguard/adguardhome | ✖ Failed | f890b775... | | Error response from daemon: Get "https://docker.mirrors.sjtug.sjtu.edu.cn/v2/": dial tcp 202.120.58.155:443: i/o timeout (Client.Timeout exceeded while awaiting headers) |
 
 
 ### History
 * [sync_results_2024-06-03.md](history/sync_results_2024-06-03.md)
-* [sync_results_2024-05-26.md](history/sync_results_2024-05-26.md)
-* [sync_results_2024-05-27.md](history/sync_results_2024-05-27.md)
-* [sync_results_2024-05-28.md](history/sync_results_2024-05-28.md)
-* [sync_results_2024-05-29.md](history/sync_results_2024-05-29.md)
-* [sync_results_2024-05-30.md](history/sync_results_2024-05-30.md)
 * [sync_results_2024-05-31.md](history/sync_results_2024-05-31.md)
+* [sync_results_2024-05-30.md](history/sync_results_2024-05-30.md)
+* [sync_results_2024-05-29.md](history/sync_results_2024-05-29.md)
+* [sync_results_2024-05-28.md](history/sync_results_2024-05-28.md)
+* [sync_results_2024-05-27.md](history/sync_results_2024-05-27.md)
+* [sync_results_2024-05-26.md](history/sync_results_2024-05-26.md)
 * [more results](https://github.com/closur3/docker-mirror-sync-check/tree/main/history)
 
 ### Link
