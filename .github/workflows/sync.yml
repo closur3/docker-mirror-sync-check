@@ -24,9 +24,9 @@ jobs:
         run: |
           registries=(
             "docker.io"
+            "dockerproxy.com"
             "docker.nju.edu.cn"
             "docker.m.daocloud.io"
-            "docker.mirrors.sjtug.sjtu.edu.cn"
           )
 
           images=(
