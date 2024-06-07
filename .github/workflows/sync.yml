@@ -25,7 +25,6 @@ jobs:
           registries=(
             "docker.io"
             "dockerproxy.com"
-            "docker.nju.edu.cn"
             "docker.m.daocloud.io"
           )
 
