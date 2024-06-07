@@ -1,5 +1,3 @@
-## Docker Registry Mirror Sync Results
-### Latest Results - 2024-06-07
 | Registry | Image | Sync Status | Digest Docker.io | Digest Mirror | Error |
 |----------|-------|-------------|------------------|---------------|-------|
 | docker.nju.edu.cn | library/node | ✔ In Sync | a8ba58f5... | a8ba58f5... | |
@@ -15,18 +13,3 @@
 | docker.m.daocloud.io | adguard/adguardhome | ✔ In Sync | 3a143e6c... | 3a143e6c... | |
 | docker.mirrors.sjtug.sjtu.edu.cn | adguard/adguardhome | ✖ Failed | 3a143e6c... | | Error response from daemon: Get "https://docker.mirrors.sjtug.sjtu.edu.cn/v2/": remote error: tls: internal error |
 
-
-### History
-* [sync_results_2024-06-07.md](history/sync_results_2024-06-07.md)
-* [sync_results_2024-06-06.md](history/sync_results_2024-06-06.md)
-* [sync_results_2024-06-05.md](history/sync_results_2024-06-05.md)
-* [sync_results_2024-06-04.md](history/sync_results_2024-06-04.md)
-* [sync_results_2024-06-03.md](history/sync_results_2024-06-03.md)
-* [sync_results_2024-05-31.md](history/sync_results_2024-05-31.md)
-* [sync_results_2024-05-30.md](history/sync_results_2024-05-30.md)
-* [more results](https://github.com/closur3/docker-mirror-sync-check/tree/main/history)
-
-### Link
-* [Docker Registry Mirrors](https://gist.github.com/y0ngb1n/7e8f16af3242c7815e7ca2f0833d3ea6)
-
-_This file was updated on 2024-06-07._
