@@ -26,9 +26,8 @@ jobs:
             "docker.io"
             "dockerproxy.com"
             "docker.m.daocloud.io"
-            "cr.yandex/mirror"
-            "registry.redhat.io"
-            "public.ecr.aws"
+            "registry.access.redhat.com"
+            "noohub.ru"
           )
 
           images=(
