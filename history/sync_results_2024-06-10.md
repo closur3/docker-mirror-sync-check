@@ -1,5 +1,3 @@
-## Docker Registry Mirror Sync Results
-### Latest Results - 2024-06-10
 | Registry | Image | Sync Status | Digest Docker.io | Digest Mirror | Error |
 |----------|-------|-------------|------------------|---------------|-------|
 | dockerproxy.com | library/node | ✖ Failed | a8ba58f5... | | Error response from daemon: received unexpected HTTP status: 502 Bad Gateway |
@@ -11,18 +9,3 @@
 | dockerproxy.com | adguard/adguardhome | ✖ Failed | 3a143e6c... | | Error response from daemon: received unexpected HTTP status: 502 Bad Gateway |
 | docker.m.daocloud.io | adguard/adguardhome | ✔ In Sync | 3a143e6c... | 3a143e6c... | |
 
-
-### History
-* [sync_results_2024-06-10.md](history/sync_results_2024-06-10.md)
-* [sync_results_2024-06-09.md](history/sync_results_2024-06-09.md)
-* [sync_results_2024-06-08.md](history/sync_results_2024-06-08.md)
-* [sync_results_2024-06-07.md](history/sync_results_2024-06-07.md)
-* [sync_results_2024-06-06.md](history/sync_results_2024-06-06.md)
-* [sync_results_2024-06-05.md](history/sync_results_2024-06-05.md)
-* [sync_results_2024-06-04.md](history/sync_results_2024-06-04.md)
-* [more results](https://github.com/closur3/docker-mirror-sync-check/tree/main/history)
-
-### Link
-* [Docker Registry Mirrors](https://gist.github.com/y0ngb1n/7e8f16af3242c7815e7ca2f0833d3ea6)
-
-_This file was updated on 2024-06-10._
