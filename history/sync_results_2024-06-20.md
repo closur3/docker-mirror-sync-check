@@ -1,5 +1,3 @@
-## Docker Registry Mirror Sync Results
-### Latest Results - 2024-06-20
 | Registry | Image | Sync Status | Digest Docker.io | Digest Mirror | Error |
 |----------|-------|-------------|------------------|---------------|-------|
 | dockerproxy.com | library/node | ✖ Failed | 5e4044ff... | | Error response from daemon: received unexpected HTTP status: 500 Internal Server Error |
@@ -11,18 +9,3 @@
 | dockerproxy.com | adguard/adguardhome | ✔ In Sync | 3a143e6c... | 3a143e6c... | |
 | docker.m.daocloud.io | adguard/adguardhome | ✔ In Sync | 3a143e6c... | 3a143e6c... | |
 
-
-### History
-* [sync_results_2024-06-20.md](history/sync_results_2024-06-20.md)
-* [sync_results_2024-06-19.md](history/sync_results_2024-06-19.md)
-* [sync_results_2024-06-18.md](history/sync_results_2024-06-18.md)
-* [sync_results_2024-06-17.md](history/sync_results_2024-06-17.md)
-* [sync_results_2024-06-16.md](history/sync_results_2024-06-16.md)
-* [sync_results_2024-06-15.md](history/sync_results_2024-06-15.md)
-* [sync_results_2024-06-14.md](history/sync_results_2024-06-14.md)
-* [more results](https://github.com/closur3/docker-mirror-sync-check/tree/main/history)
-
-### Link
-* [Docker Registry Mirrors](https://gist.github.com/y0ngb1n/7e8f16af3242c7815e7ca2f0833d3ea6)
-
-_This file was updated on 2024-06-20._
