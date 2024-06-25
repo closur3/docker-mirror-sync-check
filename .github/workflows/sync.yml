@@ -29,10 +29,13 @@ jobs:
           )
 
           images=(
-            "library/node"
-            "library/redis"
             "library/nginx"
             "adguard/adguardhome"
+            "jeessy/ddns-go"
+            "iyuucn/iyuuplus"
+            "hotio/qbittorrent"
+            "neilpang/acme.sh"
+            "emby/embyserver"
           )
 
           results="| Registry | Image | Sync Status | Digest Docker.io | Digest Mirror | Error |\\n"
