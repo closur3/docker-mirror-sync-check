@@ -24,7 +24,6 @@ jobs:
         run: |
           registries=(
             "docker.io"
-            "dockerproxy.com"
             "docker.m.daocloud.io"
           )
 
