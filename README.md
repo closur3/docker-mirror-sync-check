@@ -1,5 +1,5 @@
 ## Docker Registry Mirror Sync Results
-### Latest Results - 2024-07-10
+### Latest Results - 2024-07-11
 | Registry | Image | Sync Status | Digest Docker.io | Digest Mirror | Error |
 |----------|-------|-------------|------------------|---------------|-------|
 | docker.m.daocloud.io | library/nginx | ✔ In Sync | 67682bda... | 67682bda... | |
@@ -12,16 +12,16 @@
 
 
 ### History
+* [sync_results_2024-07-11.md](history/sync_results_2024-07-11.md)
 * [sync_results_2024-07-10.md](history/sync_results_2024-07-10.md)
 * [sync_results_2024-07-09.md](history/sync_results_2024-07-09.md)
 * [sync_results_2024-07-08.md](history/sync_results_2024-07-08.md)
 * [sync_results_2024-07-07.md](history/sync_results_2024-07-07.md)
 * [sync_results_2024-07-06.md](history/sync_results_2024-07-06.md)
 * [sync_results_2024-07-05.md](history/sync_results_2024-07-05.md)
-* [sync_results_2024-07-04.md](history/sync_results_2024-07-04.md)
 * [more results](https://github.com/closur3/docker-mirror-sync-check/tree/main/history)
 
 ### Link
 * [Docker Registry Mirrors](https://gist.github.com/y0ngb1n/7e8f16af3242c7815e7ca2f0833d3ea6)
 
-_This file was updated on 2024-07-10._
+_This file was updated on 2024-07-11._
